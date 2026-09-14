@@ -65,6 +65,8 @@ assert page.headings == [["h1", [BRAND]]], f"Unexpected headings: {page.headings
 assert normalize(page.body_text) == f"{BRAND} {VISION} {MISSION}", "Unexpected visible copy"
 assert not any(page.elements(tag) for tag in ["script", "form", "img", "nav", "header", "footer"])
 assert len(page.elements("link")) == 2, "Expected canonical and local stylesheet links"
+canonical = next(attrs["href"] for attrs in page.elements("link") if attrs.get("rel") == "canonical")
+base_path = urlsplit(canonical).path.rstrip("/")
 
 for attrs in page.elements("link"):
     href = attrs.get("href", "")
@@ -72,7 +74,10 @@ for attrs in page.elements("link"):
         continue
     url = urlsplit(href)
     assert not url.scheme and not url.netloc, "Stylesheet must be local"
-    target = root / unquote(url.path).lstrip("/")
+    output_path = unquote(url.path)
+    if base_path and output_path.startswith(f"{base_path}/"):
+        output_path = output_path[len(base_path):]
+    target = root / output_path.lstrip("/")
     assert target.is_file(), f"Missing stylesheet: {href}"
 
 print("Passed: one page, exact approved copy, semantic structure, and local assets.")
