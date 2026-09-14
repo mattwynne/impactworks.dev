@@ -7,7 +7,7 @@ from urllib.parse import unquote, urlsplit
 
 
 BRAND = "impact works"
-VISION = "The best technology in the hands of people doing good in the world."
+VISION = "The world's best technology in the hands of people doing good in the world."
 MISSION = (
     "Rooted in our community, we partner with small mission-driven organizations "
     "to build and share excellent technology that multiplies their impact."
