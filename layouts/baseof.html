@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="{{ site.Language.LanguageCode }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ site.Title }}</title>
+    <meta name="description" content="{{ site.Params.description }}" />
+    <link rel="canonical" href="{{ .Permalink }}" />
+    <meta property="og:title" content="{{ site.Title }}" />
+    <meta property="og:description" content="{{ site.Params.description }}" />
+    <meta property="og:url" content="{{ .Permalink }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_CA" />
+    <meta name="twitter:card" content="summary" />
+    {{ with resources.Get "css/main.css" | minify | fingerprint }}
+      <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" />
+    {{ end }}
+  </head>
+  <body>
+    <main>{{ block "main" . }}{{ end }}</main>
+  </body>
+</html>

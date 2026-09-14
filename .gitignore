@@ -1,0 +1,14 @@
+public/
+resources/
+.hugo_build.lock
+.DS_Store
+
+# Isolated implementation worktrees
+.worktrees/
+
+# devenv
+.devenv/
+.direnv/
+devenv.local.nix
+.devenv.flake.nix
+devenv.lock

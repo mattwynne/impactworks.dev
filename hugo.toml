@@ -1,0 +1,7 @@
+baseURL = 'https://impactworks.dev/'
+languageCode = 'en-ca'
+title = 'Impact Works'
+disableKinds = ['taxonomy', 'term', 'RSS', 'section']
+
+[params]
+description = 'Rooted in our community, we partner with small mission-driven organizations to build and share excellent technology that multiplies their impact.'
